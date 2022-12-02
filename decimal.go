@@ -206,28 +206,35 @@ func (d Decimal) DivideByInt(inToDivide int64) Decimal {
 	return d.Divide(*intToDec)
 }
 
+// AddFloat - Adds a float to a decimal
 func (d Decimal) AddFloat(floatToAdd float64) Decimal {
 	floatToDec := NewDecimalFromFloat(floatToAdd, d.precision)
 	return d.Add(*floatToDec)
 }
 
+// SubtractFloat - Subtracts a float from decimal
 func (d Decimal) SubtractFloat(floatToSubtract float64) Decimal {
 	floatToDec := NewDecimalFromFloat(floatToSubtract, d.precision)
 	return d.Subtract(*floatToDec)
 }
 
+// MultiplyFloat - Multiplies decimal with float
 func (d Decimal) MultiplyFloat(floatToMultiply float64) Decimal {
 	decimalToFloat := d.ToFloat()
 	product := decimalToFloat * floatToMultiply
 	return *NewDecimalFromFloat(product, d.precision)
 }
 
+// DivideByFloat - Divides decimal by float
 func (d Decimal) DivideByFloat(floatToDivideBy float64) Decimal {
 	decimalToFloat := d.ToFloat()
 	quotient := decimalToFloat / floatToDivideBy
 	return *NewDecimalFromFloat(quotient, d.precision)
 }
 
+// Split - Will split a decimal to [toParts] parts. If the decimal can't be split
+// in equal parts, i.e. we have a remainder, the first part will be equal to the split
+// amount + remainder.
 func (d Decimal) Split(toParts uint) []Decimal {
 	decimalToFloat := d.ToFloat()
 	parts := make([]Decimal, toParts)
