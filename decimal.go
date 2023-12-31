@@ -147,7 +147,7 @@ func (d Decimal) IsZero() bool {
 
 // IsNegative - Returns true if decimal is negative
 func (d Decimal) IsNegative() bool {
-	return d.whole < 0 && d.fraction <= 0
+	return d.whole < 0 || d.fraction < 0
 }
 
 // Add - Adds a decimal to another decimal. The resulting decimal will have
